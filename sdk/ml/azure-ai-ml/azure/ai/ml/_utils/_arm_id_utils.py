@@ -16,13 +16,13 @@ from azure.ai.ml.constants._common import (
     DATASTORE_SHORT_URI,
     LEVEL_ONE_NAMED_RESOURCE_ID_FORMAT,
     NAMED_RESOURCE_ID_FORMAT,
+    NAMED_RESOURCE_ID_FORMAT_WITH_PARENT,
     PROVIDER_RESOURCE_ID_WITH_VERSION,
     REGISTRY_URI_REGEX_FORMAT,
     REGISTRY_VERSION_PATTERN,
     SINGULARITY_FULL_NAME_REGEX_FORMAT,
     SINGULARITY_ID_REGEX_FORMAT,
     SINGULARITY_SHORT_NAME_REGEX_FORMAT,
-    NAMED_RESOURCE_ID_FORMAT_WITH_PARENT,
 )
 from azure.ai.ml.exceptions import ErrorCategory, ErrorTarget, ValidationErrorType, ValidationException
 
@@ -296,6 +296,12 @@ def parse_name_version(name: str) -> Tuple[str, Optional[str]]:
         return name, None
     name, *version = token_list  # type: ignore
     return name, ":".join(version)
+
+
+def parse_prefixed_name_label(name: str) -> Tuple[str, Optional[str]]:
+    if name.startswith(ARM_ID_PREFIX):
+        return parse_name_label(name[len(ARM_ID_PREFIX) :])
+    return parse_name_label(name)
 
 
 def parse_name_label(name: str) -> Tuple[str, Optional[str]]:

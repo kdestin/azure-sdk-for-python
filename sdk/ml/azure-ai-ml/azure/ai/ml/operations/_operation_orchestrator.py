@@ -23,7 +23,7 @@ from azure.ai.ml._utils._arm_id_utils import (
     is_singularity_full_name_for_resource,
     is_singularity_id_for_resource,
     is_singularity_short_name_for_resource,
-    parse_name_label,
+    parse_prefixed_name_label,
     parse_prefixed_name_version,
 )
 from azure.ai.ml._utils._asset_utils import _resolve_label_to_asset, get_storage_info_for_non_registry_asset
@@ -163,7 +163,7 @@ class OperationOrchestrator(object):
                     ):
                         return f"{azureml_prefix}{_asset}"
 
-                name, label = parse_name_label(asset)
+                name, label = parse_prefixed_name_label(asset)
                 # TODO: remove this condition after label is fully supported for all versioned resources
                 if label == DEFAULT_LABEL_NAME and azureml_type == AzureMLResourceType.COMPONENT:
                     return LABELLED_RESOURCE_ID_FORMAT.format(
@@ -422,7 +422,7 @@ class OperationOrchestrator(object):
         :return: Returns tuple (name, version) on success, (name@label, None) if resolution fails
         :rtype: Tuple[str, Optional[str]]
         """
-        name, label = parse_name_label(aml_id)
+        name, label = parse_prefixed_name_label(aml_id)
         if (
             azureml_type not in AzureMLResourceType.VERSIONED_TYPES
             or azureml_type == AzureMLResourceType.CODE
