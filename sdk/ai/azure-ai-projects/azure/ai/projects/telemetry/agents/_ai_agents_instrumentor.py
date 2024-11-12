@@ -585,7 +585,7 @@ class _AIAgentsInstrumentorPreview:
             response_format=response_format,
         )
 
-        if span == None:
+        if span is None:
             return function(*args, **kwargs)
 
         with span:
@@ -634,7 +634,7 @@ class _AIAgentsInstrumentorPreview:
             response_format=response_format,
         )
 
-        if span == None:
+        if span is None:
             return await function(*args, **kwargs)
 
         with span:
@@ -662,7 +662,7 @@ class _AIAgentsInstrumentorPreview:
 
         span = self.start_create_thread_span(project_name=project_name, messages=messages)
 
-        if span == None:
+        if span is None:
             return function(*args, **kwargs)
 
         with span:
@@ -690,7 +690,7 @@ class _AIAgentsInstrumentorPreview:
 
         span = self.start_create_thread_span(project_name=project_name, messages=messages)
 
-        if span == None:
+        if span is None:
             return await function(*args, **kwargs)
 
         with span:
@@ -723,7 +723,7 @@ class _AIAgentsInstrumentorPreview:
             project_name=project_name, thread_id=thread_id, content=content, role=role, attachments=attachments
         )
 
-        if span == None:
+        if span is None:
             return function(*args, **kwargs)
 
         with span:
@@ -756,7 +756,7 @@ class _AIAgentsInstrumentorPreview:
             project_name=project_name, thread_id=thread_id, content=content, role=role, attachments=attachments
         )
 
-        if span == None:
+        if span is None:
             return await function(*args, **kwargs)
 
         with span:
@@ -810,7 +810,7 @@ class _AIAgentsInstrumentorPreview:
             response_format=response_format,
         )
 
-        if span == None:
+        if span is None:
             return function(*args, **kwargs)
 
         with span:
@@ -864,7 +864,7 @@ class _AIAgentsInstrumentorPreview:
             response_format=response_format,
         )
 
-        if span == None:
+        if span is None:
             return await function(*args, **kwargs)
 
         with span:
@@ -907,7 +907,7 @@ class _AIAgentsInstrumentorPreview:
             event_handler=event_handler,
         )
 
-        if span == None:
+        if span is None:
             return function(*args, **kwargs)
 
         with span:
