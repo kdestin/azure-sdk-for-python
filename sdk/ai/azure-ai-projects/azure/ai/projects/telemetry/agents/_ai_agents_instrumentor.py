@@ -56,14 +56,13 @@ from azure.ai.projects.telemetry.agents._utils import (
 )
 from azure.core import CaseInsensitiveEnumMeta  # type: ignore
 from azure.core.settings import settings
+from azure.core.tracing import AbstractSpan
 
 _Unset: Any = object()
 
 try:
     # pylint: disable = no-name-in-module
     from opentelemetry.trace import Span, StatusCode
-
-    from azure.core.tracing import AbstractSpan  # type: ignore
 
     _tracing_library_available = True
 except ModuleNotFoundError:
